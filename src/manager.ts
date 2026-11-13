@@ -24,10 +24,8 @@ class _RedisManager {
   }
 
   getRedisPool(server_name: string = KEY_REDIS_DEFAULT_SERVER): RedisPool {
-    if (server_name in this._pools) {
+    if (this._pools[server_name]) {
       return this._pools[server_name];
-    } else if (KEY_REDIS_DEFAULT_SERVER in this._pools) {
-      return this._pools[KEY_REDIS_DEFAULT_SERVER];
     } else {
       throw Error(`Can't find redis config for ${server_name}`);
     }
